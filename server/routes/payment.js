@@ -47,7 +47,9 @@ console.log("TYPE:", typeof shortcode);
     const token = tokenRes.data.access_token;
 
         // callback URL
-    const callbackURL = `${process.env.NGROK_URL}/api/payment/callback`;
+  const callbackURL =
+  process.env.MPESA_CALLBACK_URL ||
+  "https://your-default-url/api/payment/callback";
 
     console.log("TOKEN:", token);
 console.log("SHORTCODE:", shortcode);
