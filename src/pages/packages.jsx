@@ -11,15 +11,33 @@ function Packages() {
     }
 
     try {
-      await api.post("/payment/stkpush", {
-        phone,
-        amount: price,
-      });
+      const token = localStorage.getItem("token");
 
+      if (!token) {
+        alert("You must be logged in to pay");
+        return;
+      }
+
+      const response = await api.post(
+        "/api/payment/stkpush",
+        {
+          phone,
+          amount: price,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("STK response", response.data);
       alert("STK Push sent ✅");
     } catch (err) {
-      alert("Payment failed ❌");
-      console.log(err);
+      const message =
+        err.response?.data?.error || err.response?.data?.message || err.message;
+      alert("Payment failed ❌ " + message);
+      console.error("Payment error", err.response?.data || err.message);
     }
   };
 
