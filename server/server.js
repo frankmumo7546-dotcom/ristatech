@@ -40,7 +40,7 @@ app.use(
 /* =========================
    ROUTES
 ========================= */
-app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/auth", require("./routes/auth"));
 app.use("/api/payment", require("./routes/payment"));
 app.use("/api/user", require("./routes/user"));
 
