@@ -18,7 +18,7 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // allow server-to-server / postman requests
+    // Allow server-to-server or Postman requests
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.includes(origin)) {
@@ -34,16 +34,10 @@ const corsOptions = {
 };
 
 /* =========================
-   MIDDLEWARE (ORDER IS IMPORTANT)
+   MIDDLEWARE
 ========================= */
 
-// MUST be first
 app.use(cors(corsOptions));
-
-// Handle preflight requests explicitly
-app.options(/.*/, cors(corsOptions));
-
-// Body parser
 app.use(express.json());
 
 /* =========================
