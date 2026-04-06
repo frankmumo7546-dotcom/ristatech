@@ -9,6 +9,7 @@ const app = express();
    MIDDLEWARE
 ========================= */
 app.use(express.json());
+app.use(cors());
 
 /* =========================
    CORS CONFIG (PRODUCTION SAFE)
