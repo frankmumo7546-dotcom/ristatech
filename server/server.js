@@ -41,7 +41,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Handle preflight requests explicitly
-app.options("*", cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
 
 // Body parser
